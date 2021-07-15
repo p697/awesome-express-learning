@@ -13,14 +13,17 @@ const env = dotenvExtended.load({
 
 const parsedEnv = dotenvParseVariables(env)
  
+type LogLevel = 'silent' | 'error' | 'warn' | 'info' | 'http' | 'verbose' | 'debug' | 'silly'
 interface Config {
   morganLogger: boolean
   morganBodyLogger: boolean
+  loggerLevel: LogLevel 
 }
 
 const config: Config = {
   morganLogger: parsedEnv.MORGAN_LOGGER as boolean,
   morganBodyLogger: parsedEnv.MORGAN_BODY_LOGGER as boolean,
+  loggerLevel: parsedEnv.LOGGER_LEVEL as LogLevel
 }
 
 export default config
